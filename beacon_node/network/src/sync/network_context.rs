@@ -64,11 +64,6 @@ pub enum RangeRequestId {
     },
 }
 
-/// Request ID for data_columns_by_root requests. Block lookup do not issue this requests directly.
-/// Wrapping this particular req_id, ensures not mixing this requests with a custody req_id.
-#[derive(Debug, Hash, PartialEq, Eq, Clone, Copy)]
-pub struct DataColumnsByRootRequestId(Id);
-
 #[derive(Debug)]
 pub enum RpcEvent<T> {
     StreamTermination,

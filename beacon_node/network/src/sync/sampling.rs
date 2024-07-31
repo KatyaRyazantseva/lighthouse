@@ -14,17 +14,6 @@ use types::{data_column_sidecar::ColumnIndex, ChainSpec, DataColumnSidecar, Hash
 
 pub type SamplingResult = Result<(), SamplingError>;
 
-#[derive(Debug, Hash, PartialEq, Eq, Clone, Copy)]
-pub struct SamplingId {
-    pub id: SamplingRequester,
-    pub column_index: ColumnIndex,
-}
-
-#[derive(Debug, Hash, PartialEq, Eq, Clone, Copy)]
-pub enum SamplingRequester {
-    ImportedBlock(Hash256),
-}
-
 type DataColumnSidecarVec<E> = Vec<Arc<DataColumnSidecar<E>>>;
 
 pub struct Sampling<T: BeaconChainTypes> {

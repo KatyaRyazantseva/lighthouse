@@ -17,18 +17,7 @@ use types::{data_column_sidecar::ColumnIndex, DataColumnSidecar, Epoch, Hash256}
 
 use super::{LookupRequestResult, PeerGroup, ReqId, RpcResponseResult, SyncNetworkContext};
 
-#[derive(Debug, Hash, PartialEq, Eq, Clone, Copy)]
-pub struct CustodyId {
-    pub requester: CustodyRequester,
-    pub req_id: ReqId,
-}
-
 const FAILED_PEERS_CACHE_EXPIRY_SECONDS: u64 = 5;
-
-/// Downstream components that perform custody by root requests.
-/// Currently, it's only single block lookups, so not using an enum
-#[derive(Debug, Hash, PartialEq, Eq, Clone, Copy)]
-pub struct CustodyRequester(pub SingleLookupReqId);
 
 type DataColumnSidecarVec<E> = Vec<Arc<DataColumnSidecar<E>>>;
 

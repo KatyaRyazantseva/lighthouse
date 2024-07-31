@@ -546,10 +546,10 @@ impl<E: EthSpec> BlockSlashInfo<GossipBlobError<E>> {
     }
 }
 
-impl<E: EthSpec> BlockSlashInfo<GossipDataColumnError<E>> {
+impl BlockSlashInfo<GossipDataColumnError> {
     pub fn from_early_error_data_column(
         header: SignedBeaconBlockHeader,
-        e: GossipDataColumnError<E>,
+        e: GossipDataColumnError,
     ) -> Self {
         match e {
             GossipDataColumnError::ProposalSignatureInvalid => BlockSlashInfo::SignatureInvalid(e),
@@ -799,7 +799,7 @@ fn build_gossip_verified_data_columns<T: BeaconChainTypes>(
                 .kzg
                 .as_ref()
                 .ok_or(BlockContentsError::DataColumnError(
-                    GossipDataColumnError::<T::EthSpec>::KzgNotInitialized,
+                    GossipDataColumnError::KzgNotInitialized,
                 ))?;
 
             let timer = metrics::start_timer(&metrics::DATA_COLUMN_SIDECAR_COMPUTATION);
